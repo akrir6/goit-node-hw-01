@@ -5,18 +5,22 @@ const { v4: uuidv4 } = require("uuid");
 const contactsPath = path.join(__dirname, "db/contacts.json");
 
 async function listContacts() {
-  return JSON.parse(await fs.readFile(contactsPath));
+  const data = await fs.readFile(contactsPath);
+  const contacts = JSON.parse(data);
+  return contacts;
 }
 
 async function getContactById(contactId) {
   const data = await listContacts();
-  return data.find((c) => c.id === contactId);
+  const searchedContatc = data.find((c) => c.id === contactId);
+  if (!searchedContatc) return null;
+  return searchedContatc;
 }
 
 async function removeContact(contactId) {
   const data = await listContacts();
   const index = data.findIndex((c) => c.id === contactId);
-  if (index === -1) return;
+  if (index === -1) return null;
   const [contactToRemove] = data.splice(index, 1);
   await fs.writeFile(contactsPath, JSON.stringify(data));
   return contactToRemove;
