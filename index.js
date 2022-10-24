@@ -24,12 +24,12 @@ async function invokeAction({ action, id, name, email, phone }) {
         return console.log("param 'id' required");
       }
 
-      const searchedContatc = await contacts.getContactById(id);
-      if (!searchedContatc) {
+      const searchedContact = await contacts.getContactById(id);
+      if (!searchedContact) {
         return console.log(`Contact with id: ${id} not found.`);
       }
 
-      console.table(searchedContatc);
+      console.table(searchedContact);
       break;
 
     case "add":

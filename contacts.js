@@ -12,9 +12,9 @@ async function listContacts() {
 
 async function getContactById(contactId) {
   const data = await listContacts();
-  const searchedContatc = data.find((c) => c.id === contactId);
-  if (!searchedContatc) return null;
-  return searchedContatc;
+  const searchedContact = data.find((c) => c.id === contactId);
+  if (!searchedContact) return null;
+  return searchedContact;
 }
 
 async function removeContact(contactId) {
